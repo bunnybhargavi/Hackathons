@@ -1,3 +1,3 @@
-# Hackthons
+# Hackathons
 Hi everyone Here I will be uploading all things and work that i done By participating in various hackthons.
 Whether selected or not i am trying to build confidence in me...
