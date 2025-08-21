@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaisaWala - Student-First Money Management 💰</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #f7fafc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Interactive Demo */
+        .demo {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-question h3 {
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            background: #f7fafc;
+            border: 2px solid transparent;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #e2e8f0;
+            border-color: #667eea;
+        }
+
+        .quiz-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .quiz-result {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background: #2d3748;
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #4facfe;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">PaisaWala 💰</div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#demo">Try Demo</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#learn">Learn</a></li>
+                </ul>
+                <a href="#signup" class="cta-button">Get Started Free 🚀</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="fade-in-up">
+                <h1>Student Wallet, <br>Smarter Choices !</h1>
+                <p>Managing money doesn’t have to be boring! Our platform helps students track expenses, set budgets, and save smarter — all with ease. Because every chai, movie ticket, and cab ride counts. 💸 “Small savings today, big wins tomorrow!” 🎯</p>
+                <div class="hero-buttons">
+                    <a href="#demo" class="cta-button">Take the Money Quiz 🧠</a>
+                    <a href="#features" class="cta-button" style="background: rgba(255,255,255,0.2);">See Features ✨</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Features That Actually Make Sense 🔥</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">🎮</span>
+                    <h3>Gamified Onboarding</h3>
+                    <p>Answer fun questions like "How do you spend pocket money?" and get your personalized money style - Chiller, Planner, or Risk-taker!</p>
+                    <div class="feature-tags">
+                        <span class="tag">One-click UPI</span>
+                        <span class="tag">No KYC Hassle</span>
+                        <span class="tag">College Email</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">📊</span>
+                    <h3>Smart Budgeting (No Lectures!)</h3>
+                    <p>See where your chai money went through memes and infographics. Get daily spend streaks and badges for staying under budget!</p>
+                    <div class="feature-tags">
+                        <span class="tag">Auto Categorization</span>
+                        <span class="tag">Visual Dashboards</span>
+                        <span class="tag">Streak Rewards</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">🚫</span>
+                    <h3>Peer Pressure Control</h3>
+                    <p>Anonymous comparison with students like you. See what others spend on outings without the FOMO. Set group spending caps with friends!</p>
+                    <div class="feature-tags">
+                        <span class="tag">Anonymous Comparison</span>
+                        <span class="tag">Smart Alerts</span>
+                        <span class="tag">Group Lock-in</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">🏠</span>
+                    <h3>Rent & Hostel Splitting</h3>
+                    <p>Like Splitwise but simpler! Auto reminders, UPI autopay, roommate ledger. No more fights over who paid last month.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Auto Split</span>
+                        <span class="tag">UPI Autopay</span>
+                        <span class="tag">Ledger Tracking</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">💰</span>
+                    <h3>Micro-Savings & Goals</h3>
+                    <p>Round up UPI payments and auto-save for fest fund, exam food stash, or trip savings. Emergency fund with 24-hour cool-off!</p>
+                    <div class="feature-tags">
+                        <span class="tag">Round-up Savings</span>
+                        <span class="tag">College Goals</span>
+                        <span class="tag">Emergency Lock</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">🎓</span>
+                    <h3>Student-Safe Credit</h3>
+                    <p>Interest-free micro-loans with gig credits. Parent-backed options. Clear literacy nudges before borrowing anything!</p>
+                    <div class="feature-tags">
+                        <span class="tag">Interest-Free</span>
+                        <span class="tag">Parent-Backed</span>
+                        <span class="tag">Smart Nudges</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">📚</span>
+                    <h3>Learn by Doing</h3>
+                    <p>30-second reels-style tips, interactive scenarios, and gamified leaderboards. Financial literacy that doesn't suck!</p>
+                    <div class="feature-tags">
+                        <span class="tag">Bite-sized Tips</span>
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Leaderboards</span>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <span class="feature-icon">🤝</span>
+                    <h3>Community & Support</h3>
+                    <p>Anonymous student forum for money hacks, cheapest mess food tips, and an SOS button for quick family help!</p>
+                    <div class="feature-tags">
+                        <span class="tag">Anonymous Forum</span>
+                        <span class="tag">Money Hacks</span>
+                        <span class="tag">SOS Button</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <h2>Find Your Money Style! 🎯</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <h3>🎪 You just got ₹2,000 as birthday money. What's your first move?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-style="chiller" onclick="selectOption(this)">
+                            <strong>🍕 Order food for the squad</strong><br>
+                            <small>Life's too short, let's celebrate!</small>
+                        </div>
+                        <div class="quiz-option" data-style="planner" onclick="selectOption(this)">
+                            <strong>💰 Save ₹1,500, spend ₹500 on something nice</strong><br>
+                            <small>Balance is everything</small>
+                        </div>
+                        <div class="quiz-option" data-style="risktaker" onclick="selectOption(this)">
+                            <strong>🎲 Invest it in crypto or stocks</strong><br>
+                            <small>Go big or go home!</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-result" id="quizResult">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDescription"></p>
+                    <a href="#signup" class="cta-button" style="margin-top: 1rem; display: inline-block;">Get Your Personalized Dashboard! 🚀</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2>Students Love PaisaWala! 💙</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50K+</h3>
+                    <p>Students Saving Smarter</p>
+                </div>
+                <div class="stat-item">
+                    <h3>₹2.5Cr</h3>
+                    <p>Money Saved This Year</p>
+                </div>
+                <div class="stat-item">
+                    <h3>85%</h3>
+                    <p>Reduced Financial Stress</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4.8★</h3>
+                    <p>App Store Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <a href="#features">Smart Budgeting</a>
+                    <a href="#features">Expense Splitting</a>
+                    <a href="#features">Micro Savings</a>
+                    <a href="#features">Student Loans</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <a href="#community">Student Forum</a>
+                    <a href="#community">Money Hacks</a>
+                    <a href="#community">Success Stories</a>
+                    <a href="#community">Campus Ambassadors</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Learn</h4>
+                    <a href="#learn">Financial Literacy</a>
+                    <a href="#learn">Budgeting 101</a>
+                    <a href="#learn">Investment Basics</a>
+                    <a href="#learn">Money Mindset</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#support">Help Center</a>
+                    <a href="#support">Contact Us</a>
+                    <a href="#support">Privacy Policy</a>
+                    <a href="#support">Terms of Service</a>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #4a5568; padding-top: 2rem;">
+                <p>&copy; 2025 PaisaWala. Made with 💙 for Students by Students.</p>
+                <p style="margin-top: 0.5rem; opacity: 0.7;">Helping students adult one rupee at a time! 🌟</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        function selectOption(element) {
+            // Remove selection from all options
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            
+            // Get the money style
+            const style = element.dataset.style;
+            
+            // Show result
+            setTimeout(() => {
+                showQuizResult(style);
+            }, 500);
+        }
+
+        function showQuizResult(style) {
+            const result = document.getElementById('quizResult');
+            const title = document.getElementById('resultTitle');
+            const description = document.getElementById('resultDescription');
+            
+            const results = {
+                chiller: {
+                    title: "🌟 You're a CHILLER!",
+                    description: "You believe in living in the moment! We'll help you enjoy life while secretly building savings. Perfect for someone who wants to have fun AND be financially smart without the stress."
+                },
+                planner: {
+                    title: "📋 You're a PLANNER!",
+                    description: "Balance is your superpower! You naturally think ahead while enjoying today. We'll amplify your planning skills with smart automation and goal tracking that feels effortless."
+                },
+                risktaker: {
+                    title: "🚀 You're a RISK-TAKER!",
+                    description: "You're not afraid to dream big! We'll channel that energy into smart investments and calculated risks. Plus emergency funds so your big bets don't backfire."
+                }
+            };
+            
+            title.textContent = results[style].title;
+            description.textContent = results[style].description;
+            result.style.display = 'block';
+            
+            // Smooth scroll to result
+            result.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add some floating animations
+        function createFloatingElement() {
+            const emojis = ['💰', '📱', '🎯', '✨', '🚀', '💙'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            const element = document.createElement('div');
+            element.textContent = emoji;
+            element.style.cssText = `
+                position: fixed;
+                top: ${Math.random() * 100}vh;
+                left: ${Math.random() * 100}vw;
+                font-size: 2rem;
+                pointer-events: none;
+                z-index: -1;
+                animation: float 8s ease-in-out infinite;
+                opacity: 0.1;
+            `;
+            
+            document.body.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 8000);
+        }
+
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 3000);
+    </script>
+</body>
+</html>
